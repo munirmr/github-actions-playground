@@ -11,4 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test
-        run: echo "Hello World from tested new branch!"
+        run: echo "Hello World from new feature/ branch!"
+
+  dummy2:
+    if: ${{ contains(github.ref, 'refs/heads/fix') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: echo "Hello World from new fix/ branch!"
