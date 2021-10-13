@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test
-        run: echo Run Id $GITHUB_REF
+        run: echo "Hello World!"
