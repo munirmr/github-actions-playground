@@ -15,16 +15,17 @@ jobs:
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
       - uses: actions/checkout@v2
-        with:
-          ref: master
+        #with:
+        #  ref: master
       #- name: Fetch latest
       #  run: |
       #    git fetch origin ${{ steps.extract_branch.outputs.branch }}
       #    git reset --hard ${{ steps.extract_branch.outputs.branch }}
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        uses: repo-sync/pull-request@v2
         with:
-          commit-message: Merge test
+          destination_branch: "master"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       #- name: Listen to new feature branch
       #run: echo "Hello World from new feature/ branch!"
 
