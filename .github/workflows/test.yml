@@ -10,8 +10,23 @@ jobs:
     if: ${{ contains(github.ref, 'refs/heads/feature') }}
     runs-on: ubuntu-latest
     steps:
-      - name: Listen to new feature branch
-        run: echo "Hello World from new feature/ branch!"
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Fetch latest
+        run: |
+          git fetch origin master
+          git reset --hard master
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          branch: ${{ steps.extract_branch.outputs.branch }}
+      #- name: Listen to new feature branch
+      #run: echo "Hello World from new feature/ branch!"
 
   dummy2:
     if: ${{ contains(github.ref, 'refs/heads/fix') }}
