@@ -1,13 +1,14 @@
 on:
-  push:
-    branches:
+  create
+    #branches:
       # - '*'
       # - '!master'
-      - "feature/*"
+      #- "feature/*"
 
 jobs:
   dummy:
     runs-on: ubuntu-latest
     steps:
+      if: ${{ contains(github.ref, 'refs/heads/feature') }}
       - name: Test
-        run: echo "Hello World from new-feature1 branch!"
+        run: echo "Hello World from tested new branch!"
