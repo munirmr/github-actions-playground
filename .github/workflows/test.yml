@@ -3,7 +3,7 @@ on:
     branches:
       # - '*'
       # - '!master'
-      - master
+      - "feature/*"
 
 jobs:
   dummy:
