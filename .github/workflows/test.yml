@@ -1,0 +1,13 @@
+on:
+  push:
+    branches:
+      # - '*'
+      # - '!master'
+      - master
+
+jobs:
+  dummy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: echo Run Id $GITHUB_REF
