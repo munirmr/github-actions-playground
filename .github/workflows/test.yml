@@ -1,14 +1,14 @@
 on:
   create
-    #branches:
-      # - '*'
-      # - '!master'
-      #- "feature/*"
+  #branches:
+  # - '*'
+  # - '!master'
+  #- "feature/*"
 
 jobs:
   dummy:
+    if: ${{ contains(github.ref, 'refs/heads/feature') }}
     runs-on: ubuntu-latest
     steps:
-      if: ${{ contains(github.ref, 'refs/heads/feature') }}
       - name: Test
         run: echo "Hello World from tested new branch!"
