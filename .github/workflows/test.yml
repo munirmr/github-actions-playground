@@ -10,12 +10,12 @@ jobs:
     if: ${{ contains(github.ref, 'refs/heads/feature') }}
     runs-on: ubuntu-latest
     steps:
-      - name: Test
+      - name: Listen to new feature branch
         run: echo "Hello World from new feature/ branch!"
 
   dummy2:
     if: ${{ contains(github.ref, 'refs/heads/fix') }}
     runs-on: ubuntu-latest
     steps:
-      - name: Test
+      - name: Listen to new fix branch
         run: echo "Hello World from new fix/ branch!"
