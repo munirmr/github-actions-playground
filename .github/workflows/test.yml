@@ -16,15 +16,15 @@ jobs:
         id: extract_branch
       - uses: actions/checkout@v2
         with:
-          ref: ${{ steps.extract_branch.outputs.branch }}
-      - name: Fetch latest
-        run: |
-          git fetch origin ${{ steps.extract_branch.outputs.branch }}
-          git reset --hard ${{ steps.extract_branch.outputs.branch }}
+          ref: master
+      #- name: Fetch latest
+      #  run: |
+      #    git fetch origin ${{ steps.extract_branch.outputs.branch }}
+      #    git reset --hard ${{ steps.extract_branch.outputs.branch }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          branch: master
+          commit-message: Merge test
       #- name: Listen to new feature branch
       #run: echo "Hello World from new feature/ branch!"
 
