@@ -24,7 +24,7 @@ jobs:
         with:
           destination_branch: "master"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          pr_title: github.event.commits[0].message
+          pr_title: ${{ github.event.commits[0].message }}
       #- name: Listen to new feature branch
       #run: echo "Hello World from new feature/ branch!"
 
