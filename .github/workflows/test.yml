@@ -10,22 +10,21 @@ jobs:
     if: ${{ contains(github.ref, 'refs/heads/feature') }}
     runs-on: ubuntu-latest
     steps:
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
-      - uses: actions/checkout@v2
-        #with:
-        #  ref: master
+      #- name: Extract branch name
+      #  shell: bash
+      #  run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      #  id: extract_branch
       #- name: Fetch latest
       #  run: |
       #    git fetch origin ${{ steps.extract_branch.outputs.branch }}
       #    git reset --hard ${{ steps.extract_branch.outputs.branch }}
+      - uses: actions/checkout@v2
       - name: Create Pull Request
         uses: repo-sync/pull-request@v2
         with:
           destination_branch: "master"
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_title: github.event.commits[0].message
       #- name: Listen to new feature branch
       #run: echo "Hello World from new feature/ branch!"
 
